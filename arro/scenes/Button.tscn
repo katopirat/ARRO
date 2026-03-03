@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvu5sgw5lcxs"]
+
+[ext_resource type="Script" uid="uid://cmw63s54deb20" path="res://scripts/button.gd" id="1_rtit6"]
+[ext_resource type="Texture2D" uid="uid://b0l5bfpvonnds" path="res://images/platformIndustrial_054.png" id="2_rtit6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i7y4x"]
+size = Vector2(128, 127)
+
+[node name="Button" type="Area2D"]
+scale = Vector2(0.39789623, 0.39789623)
+collision_layer = 15
+collision_mask = 15
+script = ExtResource("1_rtit6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.55102557, 0.55102557, 0.55102557, 1)
+texture_filter = 3
+position = Vector2(0, -36)
+scale = Vector2(3.990164, 3.990164)
+texture = ExtResource("2_rtit6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+light_mask = 9
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_i7y4x")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

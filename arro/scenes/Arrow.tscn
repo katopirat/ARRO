@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlmxajdbuvjdf"]
+
+[ext_resource type="Script" uid="uid://cgcetbpnol1uq" path="res://scripts/arrow.gd" id="1_4yf74"]
+[ext_resource type="Texture2D" uid="uid://dcupupyfkxn3v" path="res://images/hero/888d5f9d4bd615e9a5da56dea08ae4fa.png" id="2_3pw4r"]
+[ext_resource type="Script" uid="uid://blrs848ix7fs3" path="res://scripts/trail.gd" id="3_qhgny"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x7iiy"]
+size = Vector2(1.3554215, 1.0000006)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4yf74"]
+size = Vector2(112, 10)
+
+[node name="Arrow" type="Area2D" groups=["arrow"]]
+position = Vector2(-26, 0)
+scale = Vector2(0.30114734, 0.30184534)
+collision_layer = 8
+script = ExtResource("1_4yf74")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 3
+texture_filter = 1
+position = Vector2(13.000001, 2.3841858e-07)
+rotation = 0.0013468576
+scale = Vector2(0.4059245, 0.51406246)
+texture = ExtResource("2_3pw4r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(14.750006, -1.8626451e-09)
+scale = Vector2(83.00001, 9.749999)
+shape = SubResource("RectangleShape2D_x7iiy")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+rotation = 0.003065988
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(13.999999, 3.7252903e-09)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_4yf74")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(86.33647, 0)
+
+[node name="Trail" type="Line2D" parent="."]
+z_index = -1
+width = 3.0
+default_color = Color(1, 1, 1, 0.38039216)
+script = ExtResource("3_qhgny")
+
+[node name="ImpactParticles" type="CPUParticles2D" parent="."]
+position = Vector2(70, 0)
+rotation = -3.1415927
+emitting = false
+amount = 5
+lifetime = 0.1
+one_shot = true
+spread = 70.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 150.0
+initial_velocity_max = 200.0

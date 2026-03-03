@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cacbmbu4nq6s2"]
+
+[ext_resource type="Texture2D" uid="uid://dhbsgnf74yoi1" path="res://Mossy Tileset/Mossy - Decorations&Hazards.png" id="1_wkwoo"]
+
+[node name="rock1" type="Sprite2D"]
+z_index = -4
+scale = Vector2(0.08689591, 0.08594094)
+texture = ExtResource("1_wkwoo")
+region_enabled = true
+region_rect = Rect2(1577.3765, 305.84174, 1182.7468, 641.9182)

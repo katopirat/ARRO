@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://d228tj3r2xm23"]
+
+[ext_resource type="Texture2D" uid="uid://cuvktq6yt6a26" path="res://Mossy Tileset/Mossy - Hanging Plants.png" id="1_f1kps"]
+[ext_resource type="Script" uid="uid://buwxbbigy6vgb" path="res://scripts/hanging.gd" id="2_n000s"]
+
+[node name="rock1" type="Sprite2D"]
+z_index = -4
+scale = Vector2(0.08689591, 0.08594094)
+texture = ExtResource("1_f1kps")
+offset = Vector2(0, 592.815)
+region_enabled = true
+region_rect = Rect2(105.004395, 1312.7881, 487.06738, 1525.532)
+script = ExtResource("2_n000s")

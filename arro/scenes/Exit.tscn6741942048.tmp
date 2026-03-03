@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbqyc35efoi8u"]
+
+[ext_resource type="Script" uid="uid://ctkncktm8xv2m" path="res://scenes/exit.gd" id="1_c8tsr"]
+[ext_resource type="Texture2D" uid="uid://cnhf6h6ce03pv" path="res://images/dot_06_white.png" id="1_vs230"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vs230"]
+radius = 195.6553
+
+[node name="Exit" type="Area2D"]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("1_c8tsr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vs230")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vs230")

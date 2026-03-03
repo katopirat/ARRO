@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://drwmwbedbj4sx"]
+
+[ext_resource type="Script" uid="uid://2ge2dpaj0cum" path="res://scripts/door.gd" id="1_eyv6f"]
+[ext_resource type="Texture2D" uid="uid://dhbsgnf74yoi1" path="res://Mossy Tileset/Mossy - Decorations&Hazards.png" id="2_eyv6f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uvdjg"]
+size = Vector2(64, 147)
+
+[node name="Door" type="Area2D"]
+z_index = -2
+collision_layer = 3855
+collision_mask = 16777215
+script = ExtResource("1_eyv6f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_uvdjg")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(10, -3)
+rotation = 1.6308161
+scale = Vector2(0.10786459, 0.10907654)
+texture = ExtResource("2_eyv6f")
+region_enabled = true
+region_rect = Rect2(39.12256, 925.8387, 1644.3175, 687.3476)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-9, 1.0000001)
+rotation = -1.712168
+scale = Vector2(-0.10341589, 0.10341591)
+texture = ExtResource("2_eyv6f")
+region_enabled = true
+region_rect = Rect2(39.12256, 925.8387, 1644.3175, 687.3476)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(3, 47)
+rotation = -0.0052308473
+scale = Vector2(0.15609826, 0.15609826)
+texture = ExtResource("2_eyv6f")
+region_enabled = true
+region_rect = Rect2(1566.0817, 1821.4908, 687.0021, 573.077)
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(-0.99999905, -63)
+rotation = 3.1363618
+scale = Vector2(0.13477927, 0.1347793)
+texture = ExtResource("2_eyv6f")
+region_enabled = true
+region_rect = Rect2(1566.0817, 1821.4908, 687.0021, 573.077)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

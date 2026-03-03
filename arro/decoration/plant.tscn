@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bhijmgevu7ak1"]
+
+[node name="Plant" type="Sprite2D"]
