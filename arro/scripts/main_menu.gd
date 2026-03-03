@@ -1,6 +1,7 @@
 extends Node2D
 
 func _on_start_pressed() -> void:
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	$TransitionLayer.fade_to("res://scenes/levels/lvl1.tscn")
 
 func _on_volume_pressed() -> void:
