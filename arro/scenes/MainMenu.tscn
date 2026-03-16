@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://c3pg57faflkyi"]
+[gd_scene load_steps=26 format=4 uid="uid://c3pg57faflkyi"]
 
 [ext_resource type="Texture2D" uid="uid://c1sybdydyfvhw" path="res://images/panel-028.png" id="1_0ykhv"]
 [ext_resource type="Script" uid="uid://cyy8xcmhd1if8" path="res://scripts/main_menu.gd" id="1_2nypq"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://d3hvfj7kwadqv" path="res://scenes/transition_layer.tscn" id="12_l4mxc"]
 [ext_resource type="Texture2D" uid="uid://cpmf410xbu4vc" path="res://images/panel-transparent-center-001.png" id="13_5faoh"]
 [ext_resource type="Texture2D" uid="uid://cwb2rkqf46aqk" path="res://images/circle_05.png" id="13_l4mxc"]
+[ext_resource type="AudioStream" uid="uid://dgmj0ncgap8yt" path="res://sounds/click1.ogg" id="14_ptake"]
+[ext_resource type="AudioStream" uid="uid://cpcon08ijsnrp" path="res://sounds/switch8.ogg" id="15_hubol"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0ykhv"]
 texture = ExtResource("1_0ykhv")
@@ -1095,8 +1097,18 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_l72w3")
 text = "Close
 "
 
+[node name="SfxHover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_ptake")
+
+[node name="SfxClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_hubol")
+
+[connection signal="mouse_entered" from="VBoxContainer/Start" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Volume" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Volume" to="." method="_on_volume_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Credits" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Quit" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="CreditsPanel/VBoxContainer/BtnCloseCredits" to="." method="_on_btn_close_credits_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://c3ly4qnjvr0pg"]
+[gd_scene load_steps=68 format=3 uid="uid://c3ly4qnjvr0pg"]
 
 [ext_resource type="Script" uid="uid://bymxsqrpc0msa" path="res://scripts/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://bsc56wi3abcow" path="res://images/hero/death.png" id="2_cw2d6"]
@@ -7,6 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://cnhf6h6ce03pv" path="res://images/dot_06_white.png" id="4_mdl7e"]
 [ext_resource type="Texture2D" uid="uid://d0ml3gnfd1ll3" path="res://images/hero/Jumping.png" id="5_6eyey"]
 [ext_resource type="Texture2D" uid="uid://b65mg2gl4q05" path="res://images/hero/Normal Attack.png" id="6_d3wef"]
+[ext_resource type="AudioStream" uid="uid://gtq07wmqo4ye" path="res://sounds/freesound_community-bow-loading-38752.mp3" id="8_khinc"]
+[ext_resource type="AudioStream" uid="uid://211gactxm02t" path="res://sounds/djartmusic-arrow-swish_03-306040.mp3" id="9_bruh7"]
+[ext_resource type="AudioStream" uid="uid://xd453srlni5x" path="res://sounds/freesound_community-running-in-grass-6237.mp3" id="10_6eyey"]
+[ext_resource type="AudioStream" uid="uid://j2tdu0exwlrb" path="res://sounds/u_qqkrn9bn55-jumplanding-398256.mp3" id="11_d3wef"]
+[ext_resource type="AudioStream" uid="uid://durxt2ef8pjha" path="res://sounds/dheerajakam4jor-swoosh-sound-effect-for-fight-scenes-or-transitions-2-149890.mp3" id="11_o4126"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
 size = Vector2(68, 128)
@@ -453,3 +458,23 @@ texture_mode = 1
 begin_cap_mode = 2
 round_precision = 9
 antialiased = true
+
+[node name="SfxBowPull" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_khinc")
+
+[node name="SfxShoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_bruh7")
+
+[node name="SfxStep" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_6eyey")
+volume_db = 18.0
+
+[node name="SfxJump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_o4126")
+volume_db = 7.935
+
+[node name="SfxLand" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_d3wef")
+volume_db = 1.877
+
+[connection signal="frame_changed" from="Visuals/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]

@@ -30,6 +30,8 @@ var coy_frames = 0.15
 
 var can_move = true
 
+var step_times = [0.13, 0.43, 0.64, 0.89, 1.15, 1.41, 1.66]
+
 func _ready():
 	line.hide()
 	line.top_level = true
@@ -43,6 +45,7 @@ func _input(event):
 		elif pulled:
 			pulled = false
 			line.hide()
+			$SfxBowPull.play(2)
 			do_attack()
 	
 	if Input.is_key_pressed(KEY_R): get_tree().reload_current_scene()
@@ -62,6 +65,7 @@ func do_attack():
 	atk = false
 
 func _physics_process(delta):
+	var was_in_air = not is_on_floor()
 	# coyote time logic
 	if not is_on_floor():
 		velocity.y += grav * delta
@@ -87,6 +91,12 @@ func _physics_process(delta):
 			if Input.is_action_just_pressed("ui_accept") and coy_timer > 0:
 				velocity.y = JMP
 				coy_timer = 0
+				
+				# --- ZVUK SKOKU ---
+				$SfxJump.pitch_scale = randf_range(0.9, 1.1)
+				$SfxJump.play(0.05)
+				# ------------------
+				
 
 			var d = Input.get_axis("ui_left", "ui_right")
 			velocity.x = d * SPD if d else move_toward(velocity.x, 0, SPD)
@@ -107,6 +117,12 @@ func _physics_process(delta):
 	if pulled: calc_traj(delta)
 	
 	ui.text = str(arr_left) + "x | Mode: " + ArrType.keys()[cur_arr]
+	
+	# --- ZVUK DOPADU ---
+	if was_in_air and is_on_floor():
+		$SfxLand.pitch_scale = randf_range(0.8, 1.2)
+		$SfxLand.play(0.30)
+	# -------------------
 
 func calc_traj(delta):
 	var m_pos = get_global_mouse_position()
@@ -150,6 +166,7 @@ func calc_traj(delta):
 
 func shoot():
 	if arr_left <= 0: return
+	$SfxShoot.play()
 	var a = arr_scene.instantiate()
 	
 	a.type = cur_arr
@@ -158,3 +175,13 @@ func shoot():
 	
 	get_parent().add_child(a)
 	arr_left -= 1
+
+func _on_animated_sprite_2d_frame_changed():
+	if anim.animation == "run":
+		if anim.frame == 2 or anim.frame == 6:
+			var random_start = step_times.pick_random()
+			
+			$SfxStep.pitch_scale = randf_range(2, 3)
+			$SfxStep.play(random_start)
+			
+			get_tree().create_timer(0.17).timeout.connect(func(): $SfxStep.stop())

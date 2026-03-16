@@ -32,7 +32,7 @@ func _ready():
 
 func _physics_process(delta):
 	if stuck: return
-
+	
 	# raycast tunneling fix
 	if ray.is_colliding():
 		var obj = ray.get_collider()
@@ -43,6 +43,9 @@ func _physics_process(delta):
 				var n = ray.get_collision_normal()
 				vel = vel.bounce(n) * spd_loss
 				play_fx(hit_pos)
+				$bounce.play(0.05)
+				get_tree().create_timer(0.20).timeout.connect(func(): $bounce.stop())
+				
 				global_position = hit_pos + n * 5
 				bounces -= 1
 				rotation = vel.angle()
@@ -50,6 +53,8 @@ func _physics_process(delta):
 			else:
 				play_fx(hit_pos)
 				stuck = true
+				$impact.play(0.84)
+				
 				vel = Vector2.ZERO
 				global_position = hit_pos - transform.x * 50
 				
@@ -69,6 +74,7 @@ func play_fx(pos):
 func _on_body_entered(body):
 	if not stuck and body.is_in_group("wall") and type != ArrType.BOUNCE:
 		stuck = true
+		$impact.play(0.84)
 		vel = Vector2.ZERO
 		if is_instance_valid(trail): trail.stop = true
 		play_fx(global_position)

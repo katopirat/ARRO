@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dlmxajdbuvjdf"]
+[gd_scene load_steps=8 format=3 uid="uid://dlmxajdbuvjdf"]
 
 [ext_resource type="Script" uid="uid://cgcetbpnol1uq" path="res://scripts/arrow.gd" id="1_4yf74"]
 [ext_resource type="Texture2D" uid="uid://dcupupyfkxn3v" path="res://images/hero/888d5f9d4bd615e9a5da56dea08ae4fa.png" id="2_3pw4r"]
 [ext_resource type="Script" uid="uid://blrs848ix7fs3" path="res://scripts/trail.gd" id="3_qhgny"]
+[ext_resource type="AudioStream" uid="uid://odrhnecvcx3" path="res://sounds/yodguard-a-clean-and-precise-game-style-arrow-impact-1-450238.mp3" id="4_vclp8"]
+[ext_resource type="AudioStream" uid="uid://ciim1kwf2qkek" path="res://sounds/dennish18-arrow-wood-impact-146418.mp3" id="5_nn3e7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x7iiy"]
 size = Vector2(1.3554215, 1.0000006)
@@ -57,3 +59,11 @@ spread = 70.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 150.0
 initial_velocity_max = 200.0
+
+[node name="impact" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_vclp8")
+area_mask = 15
+
+[node name="bounce" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_nn3e7")
+area_mask = 15
